@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>me</groupId>
+  <artifactId>project-root</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!--
+      Defaults to make maven happy; they're overridden downstream.
+      Modules that use the same Scala version can avoid declaring these properties, though.
+    -->
+    <scala.version>2.11.7</scala.version>
+    <scala.binary.version>2.11</scala.binary.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+
+    <profile>
+      <id>scala-2.10</id>
+      <activation>
+        <property>
+          <name>!disable-scala-2.10</name>
+        </property>
+      </activation>
+      <modules>
+        <module>thelib/2.10</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>scala-2.11</id>
+      <activation>
+        <property>
+          <name>!disable-scala-2.11</name>
+        </property>
+      </activation>
+      <modules>
+        <module>thelib/2.11</module>
+      </modules>
+    </profile>
+
+  </profiles>
+
+</project>
